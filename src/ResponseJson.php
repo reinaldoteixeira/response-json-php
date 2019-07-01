@@ -23,7 +23,6 @@ class ResponseJson
         string $message = '',
         int $code = 200
     ) {
-        $version = $this->getConfig('version.info');
         $profiler = $this->getProfiler($start);
 
         $response = [
@@ -31,7 +30,6 @@ class ResponseJson
             'data' => $data,
             'profiler' => $profiler,
             'token' => $token,
-            'version' => $version,
             'requestId' => $requestId,
         ];
         if (!empty($message)) {
@@ -64,16 +62,5 @@ class ResponseJson
         }
         $finish = microtime(true);
         return ($finish - $start);
-    }
-
-     /**
-      * @codeCoverageIgnore
-      * get and return project config
-      * @param string $config
-      * @return mixed
-      */
-    public function getConfig(string $config)
-    {
-        return config($config);
     }
 }

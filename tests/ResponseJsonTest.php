@@ -20,10 +20,7 @@ class ResponseJsonTest extends TestCase
         $finish = $start - microtime(true);
 
         $responseJson = Mockery::mock(ResponseJson::class)->makePartial();
-        $responseJson->shouldReceive('getConfig')
-            ->with('version.info')
-            ->andReturn('1.0')
-            ->shouldReceive('getProfiler')
+        $responseJson->shouldReceive('getProfiler')
             ->with($start)
             ->andReturn($finish);
 
@@ -41,7 +38,6 @@ class ResponseJsonTest extends TestCase
             'data' => [],
             'profiler' => $finish,
             'token' => $token,
-            'version' => '1.0',
             'requestId' => 'requestid',
             'message' => 'An unexpected error occurred, please try again later',
         ];
@@ -64,10 +60,7 @@ class ResponseJsonTest extends TestCase
         $finish = $start - microtime(true);
 
         $responseJson = Mockery::mock(ResponseJson::class)->makePartial();
-        $responseJson->shouldReceive('getConfig')
-            ->with('version.info')
-            ->andReturn('1.0')
-            ->shouldReceive('getProfiler')
+        $responseJson->shouldReceive('getProfiler')
             ->with($start)
             ->andReturn($finish);
 
@@ -89,7 +82,6 @@ class ResponseJsonTest extends TestCase
             ],
             'profiler' => $finish,
             'token' => $token,
-            'version' => '1.0',
             'requestId' => 'requestid',
         ];
 
