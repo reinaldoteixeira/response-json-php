@@ -12,7 +12,6 @@ class ResponseJson
      * @param string $token
      * @param array $data
      * @param string $message
-     * @param integer $code
      * @return JsonObject $response
      */
     public function response(
@@ -20,13 +19,11 @@ class ResponseJson
         float $start,
         $token,
         $data = [],
-        string $message = '',
-        int $code = 200
+        string $message = ''
     ) {
         $profiler = $this->getProfiler($start);
 
         $response = [
-            'code' => $code,
             'data' => $data,
             'profiler' => $profiler,
             'token' => $token,
@@ -35,7 +32,7 @@ class ResponseJson
         if (!empty($message)) {
             $response['message'] = $message;
         }
-        return json_encode($response);
+        return $response;
     }
 
     /**
@@ -45,10 +42,9 @@ class ResponseJson
     public function responseDelete()
     {
         $response = [
-            'code' => 204,
             'data' => [],
         ];
-        return json_encode($response);
+        return $response;
     }
 
     /**

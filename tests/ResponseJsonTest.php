@@ -29,21 +29,17 @@ class ResponseJsonTest extends TestCase
             $start,
             $token,
             [],
-            'An unexpected error occurred, please try again later',
-            422
+            'An unexpected error occurred, please try again later'
         );
 
         $response = [
-            'code' => 422,
             'data' => [],
             'profiler' => $finish,
             'token' => $token,
             'requestId' => 'requestid',
             'message' => 'An unexpected error occurred, please try again later',
         ];
-
-        $this->assertEquals(422, json_decode($helper, true)['code']);
-        $this->assertEquals(json_encode($response), $helper);
+        $this->assertEquals($response, $helper);
     }
 
     /**
@@ -71,12 +67,10 @@ class ResponseJsonTest extends TestCase
             [
                 'id' => 1,
             ],
-            '',
-            200
+            ''
         );
 
         $response = [
-            'code' => 200,
             'data' => [
                 'id' => 1,
             ],
@@ -84,9 +78,7 @@ class ResponseJsonTest extends TestCase
             'token' => $token,
             'requestId' => 'requestid',
         ];
-
-        $this->assertEquals(200, json_decode($helper, true)['code']);
-        $this->assertEquals(json_encode($response), $helper);
+        $this->assertEquals($response, $helper);
     }
 
     /**
@@ -97,8 +89,7 @@ class ResponseJsonTest extends TestCase
         $responseJson = new ResponseJson;
         $helper = $responseJson->responseDelete();
 
-        $this->assertEquals(204, json_decode($helper, true)['code']);
-        $this->assertEmpty(json_decode($helper, true)['data']);
+        $this->assertEmpty($helper['data']);
     }
 
     /**
